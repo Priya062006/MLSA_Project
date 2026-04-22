@@ -1,0 +1,244 @@
+<!--
+Copilot Prompt:
+Create a Student Grade Calculator UI using HTML.
+Requirements:
+- Title "Student Grade Calculator"
+- Input fields for 5 subjects marks
+- Buttons for Calculate and Save Result
+- Display area for result
+- Link external CSS file
+- Link external JavaScript file
+- Use semantic labels for each subject
+- Layout should be centered in container
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Grade Calculator</title>
+<style>/* 
+Copilot Prompt:
+Style the Student Grade Calculator page.
+Requirements:
+- Center the calculator container
+- Light background color for body
+- White card container with padding
+- Rounded corners
+- Styled buttons
+- Proper spacing between inputs
+- Clean student-friendly UI
+- Responsive layout */
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#8e2de2,#4a00e0,#00c6ff);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+.calculator-container {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding:30px;
+    width:380px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    color:white;
+}
+
+h1 {
+    text-align:center;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+label {
+    display:block;
+    margin-top:10px;
+    font-size:14px;
+}
+
+input {
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    margin-top:5px;
+    outline:none;
+    font-size:15px;
+}
+
+input:focus {
+    box-shadow:0 0 10px rgba(255,255,255,0.7);
+}
+
+button {
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    margin-top:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#calculateBtn {
+    background: linear-gradient(45deg,#ff512f,#dd2476);
+    color:white;
+}
+
+#calculateBtn:hover {
+    transform: scale(1.05);
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+#saveBtn {
+    background: linear-gradient(45deg,#00c6ff,#0072ff);
+    color:white;
+}
+
+#saveBtn:hover {
+    transform: scale(1.05);
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+.result {
+    margin-top:20px;
+    padding:15px;
+    background: rgba(255,255,255,0.2);
+    border-radius:12px;
+    font-size:15px;
+    line-height:1.6;
+}</style>
+</head>
+
+<body>
+
+<div class="calculator-container">
+<h1>Student Grade Calculator</h1>
+
+<form id="gradeForm">
+
+<label>Subject 1</label>
+<input type="number" id="subject1" required>
+
+<label>Subject 2</label>
+<input type="number" id="subject2" required>
+
+<label>Subject 3</label>
+<input type="number" id="subject3" required>
+
+<label>Subject 4</label>
+<input type="number" id="subject4" required>
+
+<label>Subject 5</label>
+<input type="number" id="subject5" required>
+
+<button type="button" id="calculateBtn">Calculate</button>
+<button type="button" id="saveBtn">Save Result</button>
+
+</form>
+
+<div id="result" class="result">
+<p id="total"></p>
+<p id="average"></p>
+<p id="grade"></p>
+<p id="status"></p>
+<p id="highest"></p>
+<p id="lowest"></p>
+</div>
+
+</div>
+
+<script>/*
+Copilot Prompt:
+Create JavaScript for Student Grade Calculator.
+Requirements:
+- Read marks from 5 input fields
+- Store marks in array
+- Calculate total and average
+- Assign grade letter (A, B, C, F)
+- Determine Pass/Fail status
+- Find highest and lowest marks
+- Display results in HTML
+- Create function to save results to text file
+- Use separate functions:
+    calculateGrade()
+    saveResult()
+*/
+// Function to calculate grade and other details
+function calculateGrade() {
+
+    const marks = [];
+
+    for (let i = 1; i <= 5; i++) {
+        const mark = parseFloat(document.getElementById(`subject${i}`).value);
+
+        if (isNaN(mark) || mark < 0 || mark > 100) {
+            alert(`Please enter valid marks (0-100) for Subject ${i}`);
+            return;
+        }
+
+        marks.push(mark);
+    }
+
+    const total = marks.reduce((a, b) => a + b, 0);
+    const average = total / marks.length;
+
+    let grade;
+    if (average >= 90) grade = "A";
+    else if (average >= 80) grade = "B";
+    else if (average >= 60) grade = "C";
+    else grade = "F";
+
+    const status = average >= 40 ? "Pass" : "Fail";
+
+    const highest = Math.max(...marks);
+    const lowest = Math.min(...marks);
+
+    document.getElementById('total').textContent = `Total: ${total}`;
+    document.getElementById('average').textContent = `Average: ${average.toFixed(2)}`;
+    document.getElementById('grade').textContent = `Grade: ${grade}`;
+    document.getElementById('status').textContent = `Status: ${status}`;
+    document.getElementById('highest').textContent = `Highest: ${highest}`;
+    document.getElementById('lowest').textContent = `Lowest: ${lowest}`;
+}
+
+
+// Save result
+function saveResult() {
+
+    const result = document.getElementById("result").innerText;
+
+    const blob = new Blob([result], { type: "text/plain" });
+
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Student_Result.txt";
+
+    link.click();
+}
+
+document.getElementById('calculateBtn').addEventListener('click', calculateGrade);
+document.getElementById('saveBtn').addEventListener('click', saveResult);</script>
+</body>
+</html>
