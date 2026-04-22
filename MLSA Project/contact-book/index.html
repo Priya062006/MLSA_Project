@@ -1,0 +1,72 @@
+<!--
+Copilot Prompt:
+Create a Contact Book webpage with the following:
+- Title "Contact Book"
+- Input fields: Name, Phone, Email
+- Dropdown for Category (Family, Friends, Work)
+- Add Contact button
+- Search input to search by name
+- Save contacts button
+- Table to display contacts
+- Columns: Name, Phone, Email, Category, Actions
+- Actions include Edit and Delete buttons
+- Link external CSS and JavaScript files
+- Responsive container layout
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Book</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+<h1>📒 Contact Book</h1>
+
+<label>Name</label>
+<input type="text" id="name">
+
+<label>Phone</label>
+<input type="tel" id="phone">
+
+<label>Email</label>
+<input type="email" id="email">
+
+<label>Category</label>
+<select id="category">
+<option value="">Select Category</option>
+<option>Family</option>
+<option>Friends</option>
+<option>Work</option>
+</select>
+
+<button id="addContactBtn">Add Contact</button>
+
+<input type="text" id="searchInput" placeholder="Search by name">
+
+<button id="saveContactsBtn">Save Contacts</button>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Category</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="contactTableBody"></tbody>
+</table>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

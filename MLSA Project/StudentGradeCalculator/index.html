@@ -1,0 +1,63 @@
+<!--
+Copilot Prompt:
+Create a Student Grade Calculator UI using HTML.
+Requirements:
+- Title "Student Grade Calculator"
+- Input fields for 5 subjects marks
+- Buttons for Calculate and Save Result
+- Display area for result
+- Link external CSS file
+- Link external JavaScript file
+- Use semantic labels for each subject
+- Layout should be centered in container
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Grade Calculator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="calculator-container">
+<h1>Student Grade Calculator</h1>
+
+<form id="gradeForm">
+
+<label>Subject 1</label>
+<input type="number" id="subject1" required>
+
+<label>Subject 2</label>
+<input type="number" id="subject2" required>
+
+<label>Subject 3</label>
+<input type="number" id="subject3" required>
+
+<label>Subject 4</label>
+<input type="number" id="subject4" required>
+
+<label>Subject 5</label>
+<input type="number" id="subject5" required>
+
+<button type="button" id="calculateBtn">Calculate</button>
+<button type="button" id="saveBtn">Save Result</button>
+
+</form>
+
+<div id="result" class="result">
+<p id="total"></p>
+<p id="average"></p>
+<p id="grade"></p>
+<p id="status"></p>
+<p id="highest"></p>
+<p id="lowest"></p>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
