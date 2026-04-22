@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY PROJECT NAMES</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #8a2be2, #4b0082, #8a2be2, #4b0082);
+            background-size: 400% 400%;
+            animation: shine 3s ease-in-out infinite;
+        }
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 40px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>MY PROJECT NAMES</h1>
+    <button onclick="window.location.href='contact-book/index.html'">Contact Book</button>
+    <button onclick="window.location.href='StudentGradeCalculator/index.html'">Student Grade Calculator</button>
+</body>
+</html>
